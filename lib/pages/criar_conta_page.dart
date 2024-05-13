@@ -77,7 +77,7 @@ class _CriarContaPageState extends State<CriarContaPage> {
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                       label: Text(
-                        'E-mail',
+                        'Nome completo',
                         selectionColor: Colors.white,
                       ),
                       border: OutlineInputBorder(

@@ -41,23 +41,28 @@ class JogadoresTimePage extends StatelessWidget {
             }),
       ),
       backgroundColor: Color.fromARGB(125, 125, 24, 24), // Cor de fundo da página
-      body: ListView.builder(
-        itemCount: jogadores.length, // Contagem de itens é baseada no número de jogadores
-        itemBuilder: (context, index) {
-          return Card(
-            child: ListTile(
-              leading: const Icon(Icons.person), // Ícone para cada jogador
-              title: Text(
-                jogadores[index], // Nome do jogador
-                style: const TextStyle(color: Colors.black), // Estilo do texto
+      body: Padding(
+        padding: const EdgeInsets.only(
+          top: 12,
+        ),
+        child: ListView.builder(
+          itemCount: jogadores.length, // Contagem de itens é baseada no número de jogadores
+          itemBuilder: (context, index) {
+            return Card(
+              child: ListTile(
+                leading: const Icon(Icons.person), // Ícone para cada jogador
+                title: Text(
+                  jogadores[index], // Nome do jogador
+                  style: const TextStyle(color: Colors.black), // Estilo do texto
+                ),
+                onTap: () {
+                  // Retorna o nome do jogador selecionado para a página anterior
+                  Navigator.pop(context, jogadores[index]);
+                },
               ),
-              onTap: () {
-                // Retorna o nome do jogador selecionado para a página anterior
-                Navigator.pop(context, jogadores[index]);
-              },
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

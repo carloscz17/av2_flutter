@@ -33,31 +33,36 @@ class EscolhaTimePage extends StatelessWidget {
         ),
       ),
       backgroundColor: Color.fromARGB(125, 125, 24, 24), // Cor de fundo da página
-      body: ListView.builder(
-        itemCount: times.length, // Define o número de itens com base no número de times
-        itemBuilder: (context, index) {
-          return Card(
-            child: ListTile(
-              leading: const Icon(Icons.sports_soccer), // Ícone representando o esporte
-              title: Text(times[index], // Nome do time
-              style: const TextStyle(
-                color: Colors.black
-              ),),
-              onTap: () {
-                // Ação ao tocar no item, navega para a página dos jogadores do time selecionado
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => JogadoresTimePage(time: times[index])),
-                ).then((selectedPlayer) {
-                  // Retorna o jogador selecionado para a página anterior
-                  if (selectedPlayer != null) {
-                    Navigator.pop(context, {"team": times[index], "player": selectedPlayer});
-                  }
-                });
-              },
-            ),
-          );
-        },
+      body: Padding(
+        padding: const EdgeInsets.only(
+          top: 12,
+        ),
+        child: ListView.builder(
+          itemCount: times.length, // Define o número de itens com base no número de times
+          itemBuilder: (context, index) {
+            return Card(
+              child: ListTile(
+                leading: const Icon(Icons.sports_soccer), // Ícone representando o esporte
+                title: Text(times[index], // Nome do time
+                style: const TextStyle(
+                  color: Colors.black
+                ),),
+                onTap: () {
+                  // Ação ao tocar no item, navega para a página dos jogadores do time selecionado
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => JogadoresTimePage(time: times[index])),
+                  ).then((selectedPlayer) {
+                    // Retorna o jogador selecionado para a página anterior
+                    if (selectedPlayer != null) {
+                      Navigator.pop(context, {"team": times[index], "player": selectedPlayer});
+                    }
+                  });
+                },
+              ),
+            );
+          },
+        ),
       ),
     );
   }

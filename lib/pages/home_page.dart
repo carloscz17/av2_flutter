@@ -118,36 +118,44 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 50),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(125, 252, 99, 34),
+                  child: SizedBox(
+                    width: 300,
+                    height: 60,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(125, 252, 99, 34),
+                      ),
+                      onPressed: () {
+                        // Navega para a página de pontuação
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => PontuadoresPage()));
+                      },
+                      child: const Text('PONTUAÇÃO',
+                          style: TextStyle(color: Colors.white, fontSize: 20)),
                     ),
-                    onPressed: () {
-                      // Navega para a página de pontuação
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => PontuadoresPage()));
-                    },
-                    child: const Text('PONTUAÇÃO',
-                        style: TextStyle(color: Colors.white, fontSize: 20)),
                   ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 10),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(125, 252, 99, 34),
+                  child: SizedBox(
+                    width: 300,
+                    height: 60,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(125, 252, 99, 34),
+                      ),
+                      onPressed: () {
+                        // Navega para a página de montar elenco
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MontarElencoPage()));
+                      },
+                      child: const Text('MONTAR ELENCO',
+                          style: TextStyle(color: Colors.white, fontSize: 20)),
                     ),
-                    onPressed: () {
-                      // Navega para a página de montar elenco
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MontarElencoPage()));
-                    },
-                    child: const Text('MONTAR ELENCO',
-                        style: TextStyle(color: Colors.white, fontSize: 20)),
                   ),
                 ),
               ],

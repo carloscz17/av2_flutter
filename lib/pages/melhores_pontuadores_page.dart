@@ -71,22 +71,29 @@ class _PontuadoresPageState extends State<PontuadoresPage> {
         ],
       ),
       backgroundColor: Color.fromARGB(125, 125, 24, 24),
-      body: ListView.builder(
-        itemCount: jogadores.length,
-        itemBuilder: (context, index) {
-          Jogador jogador = jogadores[index];
-          return ListTile(
-            leading: Icon(Icons.person, color: Colors.white),
-            title: Text(
-              jogador.nome,
-              style: const TextStyle(color: Colors.white),
-            ),
-            trailing: Text(
-              "${jogador.pontuacao.toStringAsFixed(2)} pts", // Mostra a pontuação formatada
-              style: const TextStyle(color: Colors.white),
-            ),
-          );
-        },
+      body: Padding(
+        padding: const EdgeInsets.only(
+          top: 12,
+        ),
+        child: ListView.builder(
+          itemCount: jogadores.length,
+          itemBuilder: (context, index) {
+            Jogador jogador = jogadores[index];
+            return Card (
+              child: ListTile(
+                leading: const Icon(Icons.person, color: Colors.black),
+                title: Text(
+                  jogador.nome,
+                  style: const TextStyle(color: Colors.black),
+                ),
+                trailing: Text(
+                  "${jogador.pontuacao.toStringAsFixed(2)} pts", // Mostra a pontuação formatada
+                  style: const TextStyle(color: Colors.black),
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }

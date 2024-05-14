@@ -41,20 +41,29 @@ class _TecnicosPageState extends State<TecnicosPage> {
         ),),
       ),
       backgroundColor: Color.fromARGB(125, 96, 24, 24), // Cor de fundo da tela
-      body: ListView.builder(
-        itemCount: tecnicos.length, // Define o número de itens na lista com base no número de técnicos
-        itemBuilder: (context, index) {
-          return ListTile(
-            title: Text(tecnicos[index], // Mostra o nome do técnico
-            style: const TextStyle(
-              color: Colors.white
-            ),),
-            onTap: () {
-              // Retorna o nome do técnico selecionado para a tela anterior quando um item da lista é tocado
-              Navigator.pop(context, tecnicos[index]);
-            },
-          );
-        },
+      body: Padding(
+        padding: const EdgeInsets.only(
+          top: 12,
+        ),
+        child: ListView.builder(
+          itemCount: tecnicos.length, // Define o número de itens na lista com base no número de técnicos
+          itemBuilder: (context, index) {
+            return Card(
+              child: ListTile(
+                leading: const Icon(Icons.person, color: Colors.black),
+                title: Text(tecnicos[index], // Mostra o nome do técnico
+                style: const TextStyle(
+                  color: Colors.black
+                  ),
+                ),
+                onTap: () {
+                  // Retorna o nome do técnico selecionado para a tela anterior quando um item da lista é tocado
+                  Navigator.pop(context, tecnicos[index]);
+                },
+              ),
+            );
+          },
+        ),
       ),
     );
   }

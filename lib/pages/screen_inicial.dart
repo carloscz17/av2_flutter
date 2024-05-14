@@ -34,20 +34,24 @@ class _ScreenInicialState extends State<ScreenInicial> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(top: 50), // Espaçamento entre elementos
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(125, 252, 99, 34), // Cor do botão
+                      child: SizedBox(
+                        width: 250,
+                        height: 50,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color.fromARGB(125, 252, 99, 34), // Cor do botão
+                          ),
+                          onPressed: () {
+                            // Navega para a página de login
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LoginPage()));
+                          },
+                          child: const Text('FAZER LOGIN',
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 20)), // Texto do botão
                         ),
-                        onPressed: () {
-                          // Navega para a página de login
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => LoginPage()));
-                        },
-                        child: const Text('FAZER LOGIN',
-                            style: TextStyle(
-                                color: Colors.white, fontSize: 20)), // Texto do botão
                       ),
                     ),
                   ],
@@ -56,21 +60,25 @@ class _ScreenInicialState extends State<ScreenInicial> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(top: 10), // Espaçamento entre botões
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color.fromARGB(125, 252, 99, 34), // Cor do botão
+                      child: SizedBox(
+                        width: 250,
+                        height: 50,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color.fromARGB(125, 252, 99, 34), // Cor do botão
+                          ),
+                          onPressed: () {
+                            // Navega para a página de criar conta
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        CriarContaPage()));
+                          },
+                          child: const Text('CRIAR CONTA',
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 20)), // Texto do botão
                         ),
-                        onPressed: () {
-                          // Navega para a página de criar conta
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      CriarContaPage()));
-                        },
-                        child: const Text('CRIAR CONTA',
-                            style: TextStyle(
-                                color: Colors.white, fontSize: 20)), // Texto do botão
                       ),
                     ),
                   ],

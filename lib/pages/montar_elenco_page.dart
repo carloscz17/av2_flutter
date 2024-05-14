@@ -81,7 +81,7 @@ class _MontarElencoPageState extends State<MontarElencoPage> {
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(4.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -89,37 +89,55 @@ class _MontarElencoPageState extends State<MontarElencoPage> {
                 const Text("Atacantes", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
                 botaoJogador('Atacante 1'),
                 botaoJogador('Atacante 2'),
+
                 const SizedBox(height: 10),
+
                 const Text("Meio-Campistas", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
                 botaoJogador('Meio-Campo 1'),
                 botaoJogador('Meio-Campo 2'),
                 botaoJogador('Meio-Campo 3'),
+
                 const SizedBox(height: 10),
+
                 const Text("Volantes", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
                 botaoJogador('Volante 1'),
+
                 const SizedBox(height: 10),
+
                 const Text("Zagueiros", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
                 botaoJogador('Lateral 1'),
                 botaoJogador('Zagueiro 1'),
                 botaoJogador('Zagueiro 2'),
                 botaoJogador('Lateral 2'),
+
                 const SizedBox(height: 10),
+
                 const Text("Goleiro", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
                 botaoJogador('Goleiro'),
-                const Text("Técnico", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
+
                 const SizedBox(height: 10),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(125, 252, 99, 34)),
-                  onPressed: () async {
-                    final resultado = await Navigator.push(context, MaterialPageRoute(builder: (context) => TecnicosPage()));
-                    if (resultado != null) {
-                      setState(() {
-                        nomeTecnico = resultado;
-                      });
-                      saveSelectedTechnician(resultado); // Salva o técnico selecionado.
-                    }
-                  },
-                  child: Text(nomeTecnico ?? 'Técnico', style: TextStyle(color: Colors.white, fontSize: 20)),
+
+                const Text("Técnico", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
+                SizedBox(
+                  width: 200,
+                  height: 40,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(125, 252, 99, 34)),
+                    onPressed: () async {
+                      final resultado = await Navigator.push(context, MaterialPageRoute(builder: (context) => TecnicosPage()));
+                      if (resultado != null) {
+                        setState(() {
+                          nomeTecnico = resultado;
+                        });
+                        saveSelectedTechnician(resultado); // Salva o técnico selecionado.
+                      }
+                    },
+                    child: Text(nomeTecnico ?? 'Técnico', style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      )
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -131,17 +149,29 @@ class _MontarElencoPageState extends State<MontarElencoPage> {
 
   // Widget para criar botões de jogador, que ao clicar leva para a seleção de jogador.
   Widget botaoJogador(String posicao) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(125, 252, 99, 34)),
-      onPressed: () async {
-        var result = await Navigator.push(context, MaterialPageRoute(builder: (context) => EscolhaTimePage()));
-        if (result != null && result['player'] != null) {
-          setState(() {
-            savePlayerName(posicao, result['player']); // Salva o nome do jogador selecionado.
-          });
-        }
-      },
-      child: Text(nomesJogadores[posicao] ?? posicao, style: TextStyle(color: Colors.white)),
+    return Padding(
+      padding: const EdgeInsets.all(3.0),
+      child: SizedBox(
+        width: 200,
+        height: 40,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(125, 252, 99, 34)),
+          onPressed: () async {
+            var result = await Navigator.push(context, MaterialPageRoute(builder: (context) => EscolhaTimePage()));
+            if (result != null && result['player'] != null) {
+              setState(() {
+                savePlayerName(posicao, result['player']); // Salva o nome do jogador selecionado.
+              });
+            }
+          },
+          child: Text(nomesJogadores[posicao] ?? posicao,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+            )
+          ),
+        ),
+      ),
     );
   }
 }

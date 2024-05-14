@@ -11,6 +11,18 @@ class CriarContaPage extends StatefulWidget {
 }
 
 class _CriarContaPageState extends State<CriarContaPage> {
+
+   bool ocultarSenha = true;
+
+  IconData exibirIcon = Icons.visibility;
+  IconData ocultar = Icons.visibility_off;
+
+  void exibir() {
+    setState(() {
+      ocultarSenha = !ocultarSenha;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,6 +66,7 @@ class _CriarContaPageState extends State<CriarContaPage> {
                   child: TextField(
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.alternate_email),
                       label: Text(
                         'E-mail',
                         selectionColor: Colors.white,
@@ -63,24 +76,30 @@ class _CriarContaPageState extends State<CriarContaPage> {
                     ),
                   ),
                 ),
-                const Padding(
+                Padding(
                   padding:
-                      EdgeInsets.only(bottom: 16.0, left: 16.0, right: 16.0, top: 16.0),
+                      const EdgeInsets.only(bottom: 16.0, left: 16.0, right: 16.0, top: 16.0),
                   child: TextField(
-                    style: TextStyle(color: Colors.white),
-                    obscureText: true, // Define o campo como senha
+                    style: const TextStyle(color: Colors.white),
+                    obscureText: ocultarSenha, // Define o campo como senha
                     decoration: InputDecoration(
-                      label: Text('Senha'),
-                      border: OutlineInputBorder(),
+                      prefixIcon: const Icon(Icons.password),
+                    suffixIcon: IconButton(
+                      icon: Icon(ocultarSenha ? exibirIcon : ocultar),
+                      onPressed: exibir,
+                    ),
+                      label: const Text('Senha'),
+                      border: const OutlineInputBorder(),
                     ),
                   ),
                 ),
                 const Padding(
                   padding: EdgeInsets.only(
-                      bottom: 16.0, left: 16.0, right: 16.0, top: 16.0),
+                      bottom: 24.0, left: 16.0, right: 16.0, top: 16.0),
                   child: TextField(
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.account_circle_outlined),
                       label: Text(
                         'Nome completo',
                         selectionColor: Colors.white,
@@ -90,17 +109,21 @@ class _CriarContaPageState extends State<CriarContaPage> {
                     ),
                   ),
                 ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(125, 252, 99, 34),
+                SizedBox(
+                  width: 250,
+                  height: 50,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromARGB(125, 252, 99, 34),
+                    ),
+                    onPressed: () {
+                      // Navega para a tela de login após criar a conta
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => LoginPage()));
+                    },
+                    child: const Text('CRIAR CONTA',
+                        style: TextStyle(color: Colors.white, fontSize: 20)),
                   ),
-                  onPressed: () {
-                    // Navega para a tela de login após criar a conta
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => LoginPage()));
-                  },
-                  child: const Text('CRIAR',
-                      style: TextStyle(color: Colors.white, fontSize: 20)),
                 ),
               ],
             ),

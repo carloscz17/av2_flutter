@@ -27,20 +27,22 @@ class EscolhaTimePage extends StatelessWidget {
           },
         ),
       ),
+      backgroundColor: Color.fromARGB(125, 125, 24, 24),
       body: ListView.builder(
         itemCount: times.length,
         itemBuilder: (context, index) {
           return Card(
             child: ListTile(
               leading: const Icon(Icons.sports_soccer),
-              title: Text(times[index]),
+              title: Text(times[index],
+              style: const TextStyle(
+                color: Colors.black
+              ),),
               onTap: () {
-                // Abre a página de jogadores do time selecionado
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => JogadoresTimePage(time: times[index])),
                 ).then((selectedPlayer) {
-                  // Retorna o jogador selecionado e o time para a página anterior
                   if (selectedPlayer != null) {
                     Navigator.pop(context, {"team": times[index], "player": selectedPlayer});
                   }

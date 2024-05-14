@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application/pages/home_page.dart';
 import 'package:flutter_application/pages/lista_tecnicos_page.dart';
 import 'package:flutter_application/pages/lista_time_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MontarElencoPage extends StatefulWidget {
   const MontarElencoPage({super.key});
@@ -13,6 +14,51 @@ class MontarElencoPage extends StatefulWidget {
 class _MontarElencoPageState extends State<MontarElencoPage> {
   String? nomeTecnico; // Variável de estado para armazenar o nome do técnico
   Map<String, String> nomesJogadores = {}; // Armazena os nomes dos jogadores por posição
+
+  @override
+  void initState() {
+    super.initState();
+    loadSelectedTechnician();
+    loadPlayerNames();
+  }
+
+  Future<void> saveSelectedTechnician(String technicianName) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('selectedTechnician', technicianName);
+  }
+
+  Future<void> loadSelectedTechnician() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? technicianName = prefs.getString('selectedTechnician');
+    if (technicianName != null) {
+      setState(() {
+        nomeTecnico = technicianName;
+      });
+    }
+  }
+
+  Future<void> savePlayerName(String position, String playerName) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString(position, playerName);
+    nomesJogadores[position] = playerName;
+  }
+
+  Future<void> loadPlayerNames() async {
+    final prefs = await SharedPreferences.getInstance();
+    Set<String> positions = {'Atacante 1', 'Atacante 2', 'Meio-Campo 1', 'Meio-Campo 2', 'Meio-Campo 3', 'Volante 1', 'Lateral 1', 'Zagueiro 1', 'Zagueiro 2', 'Lateral 2', 'Goleiro'};
+    Map<String, String> loadedNames = {};
+    for (String position in positions) {
+      String? playerName = prefs.getString(position);
+      if (playerName != null) {
+        loadedNames[position] = playerName;
+      }
+    }
+    if (loadedNames.isNotEmpty) {
+      setState(() {
+        nomesJogadores = loadedNames;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +106,7 @@ class _MontarElencoPageState extends State<MontarElencoPage> {
                 const SizedBox(height: 10),
                 const Text("Goleiro", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
                 botaoJogador('Goleiro'),
+                const Text("Técnico", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
                 const SizedBox(height: 10),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -74,6 +121,7 @@ class _MontarElencoPageState extends State<MontarElencoPage> {
                       setState(() {
                         nomeTecnico = resultado; // Atualiza o estado com o nome do técnico selecionado
                       });
+                      saveSelectedTechnician(resultado);
                     }
                   },
                   child: Text(nomeTecnico ?? 'Técnico', // Mostra o nome do técnico selecionado
@@ -92,7 +140,7 @@ class _MontarElencoPageState extends State<MontarElencoPage> {
   Widget botaoJogador(String posicao) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: Color.fromARGB(125, 252, 99, 34), // Cor de fundo ajustada aqui
+        backgroundColor: Color.fromARGB(125, 252, 99, 34) // Cor de fundo ajustada aqui
       ),
       onPressed: () async {
         var result = await Navigator.push(
@@ -101,13 +149,12 @@ class _MontarElencoPageState extends State<MontarElencoPage> {
         );
         if (result != null && result['player'] != null) {
           setState(() {
-            nomesJogadores[posicao] = result['player']; // Atualiza o nome do jogador selecionado
+            savePlayerName(posicao, result['player']); // Atualiza o nome do jogador selecionado e salva
           });
         }
       },
-      child: Text(
-        nomesJogadores[posicao] ?? posicao, // Mostra o nome do jogador ou a posição se não selecionado
-        style: TextStyle(color: Colors.white), // Texto branco dentro do botão
+      child: Text(nomesJogadores[posicao] ?? posicao, // Mostra o nome do jogador ou a posição se não selecionado
+        style: TextStyle(color: Colors.white), // Define a cor do texto como branco
       ),
     );
   }

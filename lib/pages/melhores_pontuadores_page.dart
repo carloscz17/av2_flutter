@@ -52,14 +52,21 @@ class _PontuadoresPageState extends State<PontuadoresPage> {
           )
         ],
       ),
+      backgroundColor: Color.fromARGB(125, 125, 24, 24),
       body: ListView.builder(
         itemCount: jogadores.length,
         itemBuilder: (context, index) {
           Jogador jogador = jogadores[index];
           return ListTile(
-            leading: Icon(Icons.person, color: Colors.black),
-            title: Text(jogador.nome),
-            trailing: Text("${jogador.pontuacao.toStringAsFixed(2)} pts"),
+            leading: Icon(Icons.person, color: Colors.white),
+            title: Text(jogador.nome,
+            style: const TextStyle(
+              color: Colors.white
+            ),),
+            trailing: Text("${jogador.pontuacao.toStringAsFixed(2)} pts",
+            style: const TextStyle(
+              color: Colors.white
+            ),),
           );
         },
       ),

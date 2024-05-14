@@ -40,7 +40,10 @@ class _TecnicosPageState extends State<TecnicosPage> {
         itemCount: tecnicos.length,
         itemBuilder: (context, index) {
           return ListTile(
-            title: Text(tecnicos[index]),
+            title: Text(tecnicos[index],
+            style: const TextStyle(
+              color: Colors.white
+            ),),
             onTap: () {
               Navigator.pop(context, tecnicos[index]); // Retorna o nome do técnico selecionado
             },

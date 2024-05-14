@@ -16,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         backgroundColor: Color.fromARGB(125, 252, 99, 34),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.black,
+          icon: const Icon(Icons.arrow_back, color: Colors.white,
           ),
           onPressed: () {
               Navigator.push(context,

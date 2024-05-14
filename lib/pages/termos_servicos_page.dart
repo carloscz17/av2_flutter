@@ -17,7 +17,7 @@ class _TermosEServicosPageState extends State<TermosEServicosPage> {
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
-            color: Colors.black,
+            color: Colors.white,
           ),
           onPressed: () {
             Navigator.push(context,

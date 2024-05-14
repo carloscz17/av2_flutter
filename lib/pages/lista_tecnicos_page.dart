@@ -26,7 +26,7 @@ class _TecnicosPageState extends State<TecnicosPage> {
           leading: IconButton(
             icon: const Icon(
               Icons.arrow_back,
-              color: Colors.black,
+              color: Colors.white,
             ),
             onPressed: () {
               Navigator.push(

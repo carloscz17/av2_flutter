@@ -65,20 +65,20 @@ class _MontarElencoPageState extends State<MontarElencoPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(125, 252, 99, 34),
+        title: const Text('MONTAR ELENCO',
+        style: TextStyle(
+          color: Colors.white
+        ),),
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
-            color: Colors.black,
+            color: Colors.white,
           ),
           onPressed: () {
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => HomePage()));
           },
         ),
-        title: const Text('MONTAR ELENCO',
-        style: TextStyle(
-          color: Colors.white
-        ),),
       ),
       backgroundColor: Color.fromARGB(125, 96, 24, 24),
       body: Center(

@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:flutter_application/pages/home_page.dart';
 
 class PontuadoresPage extends StatefulWidget {
   const PontuadoresPage({super.key});
@@ -10,22 +11,38 @@ class PontuadoresPage extends StatefulWidget {
 
 class _PontuadoresPageState extends State<PontuadoresPage> {
   List<Jogador> jogadores = [];
-  bool ascending = true; // Controle da ordenação
+  bool ascending = true;
 
   @override
   void initState() {
     super.initState();
     var nomes = [
-      "Cássio", "Frosty", "Raniele", "Wesley", "Piton", 
-      "Diego Costa", "Bitello", "Pavón", "Soteldo", "Cristaldo", 
-      "Thiago Silva", "Marcelo", "Felipe Melo", "Cano", "Andre",
-      "Calleri", "James Rodriguez", "Luciano", "Rafael", "Lucas"
+      "Cássio",
+      "Frosty",
+      "Raniele",
+      "Wesley",
+      "Piton",
+      "Diego Costa",
+      "Bitello",
+      "Pavón",
+      "Soteldo",
+      "Cristaldo",
+      "Thiago Silva",
+      "Marcelo",
+      "Felipe Melo",
+      "Cano",
+      "Andre",
+      "Calleri",
+      "James Rodriguez",
+      "Luciano",
+      "Rafael",
+      "Lucas"
     ];
-    nomes.shuffle(); // Embaralha a lista de nomes
+    nomes.shuffle();
     jogadores = List.generate(10, (index) {
       return Jogador(nome: nomes[index], pontuacao: Random().nextDouble() * 20);
     });
-    jogadores.sort((a, b) => a.pontuacao.compareTo(b.pontuacao)); // Ordena inicialmente do menor para o maior
+    jogadores.sort((a, b) => a.pontuacao.compareTo(b.pontuacao));
   }
 
   void sortPlayers() {
@@ -35,7 +52,7 @@ class _PontuadoresPageState extends State<PontuadoresPage> {
       } else {
         jogadores.sort((a, b) => a.pontuacao.compareTo(b.pontuacao));
       }
-      ascending = !ascending; // Inverte a ordem para a próxima chamada
+      ascending = !ascending;
     });
   }
 
@@ -43,14 +60,26 @@ class _PontuadoresPageState extends State<PontuadoresPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("MELHORES PONTUADORES",
-        style: TextStyle(
-          color: Colors.white
-        ),),
+        title: const Text(
+          "MELHORES PONTUADORES",
+          style: TextStyle(color: Colors.white),
+        ),
         backgroundColor: Colors.deepOrange,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: ((context) => const HomePage())));
+          },
+        ),
         actions: [
           IconButton(
-            icon: Icon(ascending ? Icons.arrow_upward : Icons.arrow_downward),
+            icon: Icon(
+              ascending ? Icons.arrow_upward : Icons.arrow_downward,
+              color: Colors.white,
+            ),
             onPressed: sortPlayers,
           )
         ],
@@ -62,14 +91,14 @@ class _PontuadoresPageState extends State<PontuadoresPage> {
           Jogador jogador = jogadores[index];
           return ListTile(
             leading: Icon(Icons.person, color: Colors.white),
-            title: Text(jogador.nome,
-            style: const TextStyle(
-              color: Colors.white
-            ),),
-            trailing: Text("${jogador.pontuacao.toStringAsFixed(2)} pts",
-            style: const TextStyle(
-              color: Colors.white
-            ),),
+            title: Text(
+              jogador.nome,
+              style: const TextStyle(color: Colors.white),
+            ),
+            trailing: Text(
+              "${jogador.pontuacao.toStringAsFixed(2)} pts",
+              style: const TextStyle(color: Colors.white),
+            ),
           );
         },
       ),

@@ -25,7 +25,10 @@ class JogadoresTimePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Jogadores do $time'),
+        title: Text('Jogadores do $time',
+        style: const TextStyle(
+          color: Colors.white
+        ),),
         backgroundColor: Colors.deepOrange,
         leading: IconButton(
             icon: const Icon(Icons.arrow_back),

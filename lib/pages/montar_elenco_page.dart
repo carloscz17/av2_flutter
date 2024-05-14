@@ -75,7 +75,10 @@ class _MontarElencoPageState extends State<MontarElencoPage> {
                 context, MaterialPageRoute(builder: (context) => HomePage()));
           },
         ),
-        title: const Text('MONTAR ELENCO'),
+        title: const Text('MONTAR ELENCO',
+        style: TextStyle(
+          color: Colors.white
+        ),),
       ),
       backgroundColor: Color.fromARGB(125, 96, 24, 24),
       body: Center(

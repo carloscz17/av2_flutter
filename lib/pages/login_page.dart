@@ -23,7 +23,10 @@ class _LoginPageState extends State<LoginPage> {
                   MaterialPageRoute(builder: (context) => ScreenInicial()));
             },
         ),
-        title: Text('LOGIN'),
+        title: const Text('LOGIN',
+        style: TextStyle(
+          color: Colors.white
+        ),),
         ),
       backgroundColor: const Color.fromARGB(125, 96, 24, 24),
       body: Stack(children: [

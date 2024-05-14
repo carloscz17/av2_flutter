@@ -17,7 +17,10 @@ class EscolhaTimePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Escolha seu Time"),
+        title: const Text("Escolha seu Time",
+        style: TextStyle(
+          color: Colors.white
+        ),),
         backgroundColor: Colors.deepOrange,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),

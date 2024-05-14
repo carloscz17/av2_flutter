@@ -43,7 +43,10 @@ class _PontuadoresPageState extends State<PontuadoresPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Melhores Pontuadores"),
+        title: const Text("MELHORES PONTUADORES",
+        style: TextStyle(
+          color: Colors.white
+        ),),
         backgroundColor: Colors.deepOrange,
         actions: [
           IconButton(

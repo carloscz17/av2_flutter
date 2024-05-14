@@ -33,7 +33,10 @@ class _TecnicosPageState extends State<TecnicosPage> {
                   context, MaterialPageRoute(builder: (context) => MontarElencoPage()));
             },
           ),
-          title: Text('LISTA TÉCNICOS'),
+          title: const Text('LISTA TÉCNICOS',
+          style: TextStyle(
+            color: Colors.white
+          ),),
         ),
         backgroundColor: Color.fromARGB(125, 96, 24, 24),
               body: ListView.builder(

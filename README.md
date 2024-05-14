@@ -1,16 +1,26 @@
-# flutter_application
+# Cartola. Projeto da nossa disciplina de Mobile. 🎩
 
-A new Flutter project.
+📚 Equipe
 
-## Getting Started
+• Iasmyn Levina
 
-This project is a starting point for a Flutter application.
+• Carlos César
 
-A few resources to get you started if this is your first Flutter project:
+• João Neto
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+● Descrição
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+🎩 Bem-vindo ao nosso repositório GitHub!
+
+Aqui você encontrará o código-fonte de nossa aplicação, um jogo fictício onde os usuários podem montar seus próprios times usando jogadores da vida real.
+
+🔍 Funcionalidades 
+
+✅ Cadastro de Usuários: Os usuários podem se cadastrar na plataforma para começar a montar seus times.
+
+✅ Seleção de Jogadores: Os usuários podem selecionar jogadores da vida real para compor seus times.
+
+✅ Montagem de Times: Os usuários podem criar e personalizar seus times conforme suas preferências e estratégias.
+
+
+

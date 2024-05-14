@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_application/pages/home_page.dart';
 
+// StatefulWidget para gerenciar o estado da tela de melhores pontuadores
 class PontuadoresPage extends StatefulWidget {
   const PontuadoresPage({super.key});
 
@@ -10,49 +11,34 @@ class PontuadoresPage extends StatefulWidget {
 }
 
 class _PontuadoresPageState extends State<PontuadoresPage> {
-  List<Jogador> jogadores = [];
-  bool ascending = true;
+  List<Jogador> jogadores = []; // Lista para armazenar os jogadores
+  bool ascending = true; // Controla a direção da ordenação
 
   @override
   void initState() {
     super.initState();
-    var nomes = [
-      "Cássio",
-      "Frosty",
-      "Raniele",
-      "Wesley",
-      "Piton",
-      "Diego Costa",
-      "Bitello",
-      "Pavón",
-      "Soteldo",
-      "Cristaldo",
-      "Thiago Silva",
-      "Marcelo",
-      "Felipe Melo",
-      "Cano",
-      "Andre",
-      "Calleri",
-      "James Rodriguez",
-      "Luciano",
-      "Rafael",
-      "Lucas"
+    var nomes = [ // Lista de nomes de jogadores
+      "Cássio", "Frosty", "Raniele", "Wesley", "Piton",
+      "Diego Costa", "Bitello", "Pavón", "Soteldo", "Cristaldo",
+      "Thiago Silva", "Marcelo", "Felipe Melo", "Cano", "Andre",
+      "Calleri", "James Rodriguez", "Luciano", "Rafael", "Lucas"
     ];
-    nomes.shuffle();
+    nomes.shuffle(); // Embaralha a lista de nomes para aleatoriedade
     jogadores = List.generate(10, (index) {
+      // Gera uma lista de 10 jogadores com nomes e pontuações aleatórias
       return Jogador(nome: nomes[index], pontuacao: Random().nextDouble() * 20);
     });
-    jogadores.sort((a, b) => a.pontuacao.compareTo(b.pontuacao));
+    jogadores.sort((a, b) => a.pontuacao.compareTo(b.pontuacao)); // Ordena jogadores pela pontuação inicialmente
   }
 
-  void sortPlayers() {
+  void sortPlayers() { // Função para ordenar os jogadores
     setState(() {
       if (ascending) {
-        jogadores.sort((a, b) => b.pontuacao.compareTo(a.pontuacao));
+        jogadores.sort((a, b) => b.pontuacao.compareTo(a.pontuacao)); // Ordena decrescentemente
       } else {
-        jogadores.sort((a, b) => a.pontuacao.compareTo(b.pontuacao));
+        jogadores.sort((a, b) => a.pontuacao.compareTo(b.pontuacao)); // Ordena crescentemente
       }
-      ascending = !ascending;
+      ascending = !ascending; // Alterna a direção da ordenação
     });
   }
 
@@ -80,7 +66,7 @@ class _PontuadoresPageState extends State<PontuadoresPage> {
               ascending ? Icons.arrow_upward : Icons.arrow_downward,
               color: Colors.white,
             ),
-            onPressed: sortPlayers,
+            onPressed: sortPlayers, // Botão para alternar a ordenação
           )
         ],
       ),
@@ -96,7 +82,7 @@ class _PontuadoresPageState extends State<PontuadoresPage> {
               style: const TextStyle(color: Colors.white),
             ),
             trailing: Text(
-              "${jogador.pontuacao.toStringAsFixed(2)} pts",
+              "${jogador.pontuacao.toStringAsFixed(2)} pts", // Mostra a pontuação formatada
               style: const TextStyle(color: Colors.white),
             ),
           );
@@ -106,6 +92,7 @@ class _PontuadoresPageState extends State<PontuadoresPage> {
   }
 }
 
+// Classe Jogador para armazenar informações de cada jogador
 class Jogador {
   String nome;
   double pontuacao;

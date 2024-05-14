@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/pages/montar_elenco_page.dart';
 
+// Define um StatefulWidget para gerenciar o estado da tela dos técnicos
 class TecnicosPage extends StatefulWidget {
   const TecnicosPage({super.key});
 
@@ -9,8 +10,8 @@ class TecnicosPage extends StatefulWidget {
 }
 
 class _TecnicosPageState extends State<TecnicosPage> {
-
-    final List<String> tecnicos = [
+  // Lista de nomes de técnicos
+  final List<String> tecnicos = [
     "Tite",
     "Diniz",
     "Zubeldia",
@@ -21,34 +22,36 @@ class _TecnicosPageState extends State<TecnicosPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color.fromARGB(125, 252, 99, 34),
-          leading: IconButton(
-            icon: const Icon(
-              Icons.arrow_back,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => MontarElencoPage()));
-            },
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(125, 252, 99, 34), // Define a cor da AppBar
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
           ),
-          title: const Text('LISTA TÉCNICOS',
-          style: TextStyle(
-            color: Colors.white
-          ),),
+          onPressed: () {
+            // Navega de volta para a página de montar elenco
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => MontarElencoPage()));
+          },
         ),
-        backgroundColor: Color.fromARGB(125, 96, 24, 24),
-              body: ListView.builder(
-        itemCount: tecnicos.length,
+        title: const Text('LISTA TÉCNICOS', // Título da página
+        style: TextStyle(
+          color: Colors.white
+        ),),
+      ),
+      backgroundColor: Color.fromARGB(125, 96, 24, 24), // Cor de fundo da tela
+      body: ListView.builder(
+        itemCount: tecnicos.length, // Define o número de itens na lista com base no número de técnicos
         itemBuilder: (context, index) {
           return ListTile(
-            title: Text(tecnicos[index],
+            title: Text(tecnicos[index], // Mostra o nome do técnico
             style: const TextStyle(
               color: Colors.white
             ),),
             onTap: () {
-              Navigator.pop(context, tecnicos[index]); // Retorna o nome do técnico selecionado
+              // Retorna o nome do técnico selecionado para a tela anterior quando um item da lista é tocado
+              Navigator.pop(context, tecnicos[index]);
             },
           );
         },

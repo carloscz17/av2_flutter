@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application/pages/login_page.dart';
 import 'package:flutter_application/pages/screen_inicial.dart';
 
+// Define a StatefulWidget para gerenciar o estado da tela de criação de conta
 class CriarContaPage extends StatefulWidget {
   const CriarContaPage({super.key});
 
@@ -14,23 +15,24 @@ class _CriarContaPageState extends State<CriarContaPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(125, 252, 99, 34),
+        backgroundColor: Color.fromARGB(125, 252, 99, 34), // Define a cor do AppBar
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
             color: Colors.white,
           ),
           onPressed: () {
+            // Navega de volta para a tela inicial ao clicar no ícone de voltar
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => ScreenInicial()));
           },
         ),
-        title: const Text('CRIAR CONTA',
+        title: const Text('CRIAR CONTA', // Título do AppBar
         style: TextStyle(
           color: Colors.white
         ),),
       ),
-      backgroundColor: Color.fromARGB(125, 96, 24, 24),
+      backgroundColor: Color.fromARGB(125, 96, 24, 24), // Define a cor de fundo da tela
       body: Stack(
         children: [
           Container(
@@ -66,7 +68,7 @@ class _CriarContaPageState extends State<CriarContaPage> {
                       EdgeInsets.only(bottom: 16.0, left: 16.0, right: 16.0, top: 16.0),
                   child: TextField(
                     style: TextStyle(color: Colors.white),
-                    obscureText: true,
+                    obscureText: true, // Define o campo como senha
                     decoration: InputDecoration(
                       label: Text('Senha'),
                       border: OutlineInputBorder(),
@@ -93,6 +95,7 @@ class _CriarContaPageState extends State<CriarContaPage> {
                     backgroundColor: Color.fromARGB(125, 252, 99, 34),
                   ),
                   onPressed: () {
+                    // Navega para a tela de login após criar a conta
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => LoginPage()));
                   },

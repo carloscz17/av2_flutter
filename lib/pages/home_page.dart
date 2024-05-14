@@ -6,6 +6,7 @@ import 'package:flutter_application/pages/montar_elenco_page.dart';
 import 'package:flutter_application/pages/sobre_app_page.dart';
 import 'package:flutter_application/pages/termos_servicos_page.dart';
 
+// StatefulWidget para gerenciar o estado da tela inicial da aplicação
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -18,8 +19,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(125, 252, 99, 34),
-        title: const Text('HOME',
+        backgroundColor: Color.fromARGB(125, 252, 99, 34), // Define a cor da AppBar
+        title: const Text('HOME', // Título na AppBar
         style: TextStyle(
           color: Colors.white
         ),),
@@ -27,6 +28,7 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: const Icon(Icons.logout, color: Colors.white,),
             onPressed: () {
+              // Redireciona para a página de login e remove todas as rotas anteriores
               Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(builder: (context) => LoginPage()),
@@ -36,12 +38,12 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      backgroundColor: Color.fromARGB(125, 96, 24, 24),
-      drawer: Drawer(
+      backgroundColor: Color.fromARGB(125, 96, 24, 24), // Define a cor de fundo da página
+      drawer: Drawer( // Drawer para navegação entre páginas
         child: ListView( 
           padding: EdgeInsets.zero,
           children: <Widget>[
-             DrawerHeader( 
+             DrawerHeader(  // Cabeçalho do Drawer
               decoration: const BoxDecoration(
                 color: Color.fromARGB(125, 252, 99, 34),
               ),
@@ -56,7 +58,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  Image.asset('assets/images/logo_cartola.png', width: 300),
+                  Image.asset('assets/images/logo_cartola.png', width: 300), // Logo no Drawer
                 ],
               )
             ),
@@ -64,6 +66,7 @@ class _HomePageState extends State<HomePage> {
               leading: const Icon(Icons.contact_mail),
               title: const Text('Entrar em Contato'),
               onTap: () {
+                // Navega para a página de contato
                 Navigator.of(context).pop();
                 Navigator.push(
                   context,
@@ -75,6 +78,7 @@ class _HomePageState extends State<HomePage> {
               leading: const Icon(Icons.info),
               title: const Text('Sobre o Aplicativo'),
               onTap: () {
+                // Navega para a página sobre o aplicativo
                 Navigator.of(context).pop(); 
                 Navigator.push(
                   context,
@@ -86,7 +90,8 @@ class _HomePageState extends State<HomePage> {
               leading: const Icon(Icons.policy),
               title: const Text('Termos e Serviços'),
               onTap: () {
-                Navigator.of(context).pop();  // Fecha o drawer antes de navegar
+                // Navega para a página de termos e serviços
+                Navigator.of(context).pop();  
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const TermosEServicosPage()),
@@ -108,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.only(top: 200),
                   child: Image.asset(
                     'assets/images/logo_cartola.png',
-                    width: 300,
+                    width: 300, // Exibe o logo centralizado na página
                   ),
                 ),
                 Padding(
@@ -118,14 +123,14 @@ class _HomePageState extends State<HomePage> {
                       backgroundColor: Color.fromARGB(125, 252, 99, 34),
                     ),
                     onPressed: () {
+                      // Navega para a página de pontuação
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => PontuadoresPage()));
                     },
                     child: const Text('PONTUAÇÃO',
-                        style:
-                            TextStyle(color: Colors.white, fontSize: 20)),
+                        style: TextStyle(color: Colors.white, fontSize: 20)),
                   ),
                 ),
                 Padding(
@@ -135,14 +140,14 @@ class _HomePageState extends State<HomePage> {
                       backgroundColor: Color.fromARGB(125, 252, 99, 34),
                     ),
                     onPressed: () {
+                      // Navega para a página de montar elenco
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => MontarElencoPage()));
                     },
                     child: const Text('MONTAR ELENCO',
-                        style:
-                            TextStyle(color: Colors.white, fontSize: 20)),
+                        style: TextStyle(color: Colors.white, fontSize: 20)),
                   ),
                 ),
               ],

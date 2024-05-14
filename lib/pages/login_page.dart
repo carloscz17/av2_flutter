@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application/pages/home_page.dart';
 import 'package:flutter_application/pages/screen_inicial.dart';
 
+// Define um StatefulWidget para gerenciar o estado da tela de login
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -14,21 +15,21 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(125, 252, 99, 34),
+        backgroundColor: Color.fromARGB(125, 252, 99, 34), // Define a cor da AppBar
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white,
-          ),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ScreenInicial()));
-            },
+            // Navega de volta para a tela inicial ao clicar no ícone de voltar
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => ScreenInicial()));
+          },
         ),
-        title: const Text('LOGIN',
+        title: const Text('LOGIN', // Título na AppBar
         style: TextStyle(
           color: Colors.white
         ),),
-        ),
-      backgroundColor: const Color.fromARGB(125, 96, 24, 24),
+      ),
+      backgroundColor: const Color.fromARGB(125, 96, 24, 24), // Cor de fundo da tela
       body: Stack(children: [
         Container(
           height: MediaQuery.of(context).size.height,
@@ -38,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(top: 80),
-                child: Image.asset('assets/images/logo_cartola.png',
+                child: Image.asset('assets/images/logo_cartola.png', // Exibe o logo
                 width: 300,
                 ),
               ),
@@ -56,41 +57,39 @@ class _LoginPageState extends State<LoginPage> {
                         selectionColor: Colors.white,),
                         border: OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: 
-                                  Colors.white)
+                            color: Colors.white)
                         ),
                     ),
                   ),
               ),
               const Padding(
-            padding: EdgeInsets.only(
-              bottom: 24.0,
-              left: 16.0,
-              right: 16.0),
-            child: TextField(
-              style: TextStyle(color: Colors.white),
-              obscureText: true,
-              decoration: InputDecoration(
-                label: Text(
-                  'Senha'),
-                border: OutlineInputBorder(
+                padding: EdgeInsets.only(
+                  bottom: 24.0,
+                  left: 16.0,
+                  right: 16.0),
+                child: TextField(
+                  style: TextStyle(color: Colors.white),
+                  obscureText: true, // Campo de senha com obscurecimento de texto
+                  decoration: InputDecoration(
+                    label: Text('Senha'),
+                    border: OutlineInputBorder(),
+                  ),
                 ),
               ),
-            ),
-          ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color.fromARGB(125, 252, 99, 34),
-            ),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const HomePage()));
-            },
-            child: const Text('ENTRAR',
-                style: TextStyle(
-                color: Colors.white,
-                fontSize: 20)),
-          ),
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(125, 252, 99, 34),
+                ),
+                onPressed: () {
+                  // Navega para a tela principal ao clicar no botão 'ENTRAR'
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const HomePage()));
+                },
+                child: const Text('ENTRAR', // Texto do botão
+                    style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20)),
+              ),
             ]
           ),
         )

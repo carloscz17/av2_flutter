@@ -12,21 +12,23 @@ class MontarElencoPage extends StatefulWidget {
 }
 
 class _MontarElencoPageState extends State<MontarElencoPage> {
-  String? nomeTecnico; // Variável de estado para armazenar o nome do técnico
-  Map<String, String> nomesJogadores = {}; // Armazena os nomes dos jogadores por posição
+  String? nomeTecnico; // Variável para armazenar o nome do técnico selecionado.
+  Map<String, String> nomesJogadores = {}; // Armazena os nomes dos jogadores por posição.
 
   @override
   void initState() {
     super.initState();
-    loadSelectedTechnician();
-    loadPlayerNames();
+    loadSelectedTechnician(); // Carrega o técnico selecionado do armazenamento local ao iniciar.
+    loadPlayerNames(); // Carrega os nomes dos jogadores do armazenamento local ao iniciar.
   }
 
+  // Salva o nome do técnico no SharedPreferences.
   Future<void> saveSelectedTechnician(String technicianName) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('selectedTechnician', technicianName);
   }
 
+  // Carrega o nome do técnico salvo do SharedPreferences.
   Future<void> loadSelectedTechnician() async {
     final prefs = await SharedPreferences.getInstance();
     String? technicianName = prefs.getString('selectedTechnician');
@@ -37,12 +39,14 @@ class _MontarElencoPageState extends State<MontarElencoPage> {
     }
   }
 
+  // Salva o nome do jogador no SharedPreferences para uma dada posição.
   Future<void> savePlayerName(String position, String playerName) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString(position, playerName);
     nomesJogadores[position] = playerName;
   }
 
+  // Carrega os nomes dos jogadores para cada posição do SharedPreferences.
   Future<void> loadPlayerNames() async {
     final prefs = await SharedPreferences.getInstance();
     Set<String> positions = {'Atacante 1', 'Atacante 2', 'Meio-Campo 1', 'Meio-Campo 2', 'Meio-Campo 3', 'Volante 1', 'Lateral 1', 'Zagueiro 1', 'Zagueiro 2', 'Lateral 2', 'Goleiro'};
@@ -65,18 +69,11 @@ class _MontarElencoPageState extends State<MontarElencoPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(125, 252, 99, 34),
-        title: const Text('MONTAR ELENCO',
-        style: TextStyle(
-          color: Colors.white
-        ),),
+        title: const Text('MONTAR ELENCO', style: TextStyle(color: Colors.white)),
         leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => HomePage()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
           },
         ),
       ),
@@ -112,24 +109,17 @@ class _MontarElencoPageState extends State<MontarElencoPage> {
                 const Text("Técnico", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white)),
                 const SizedBox(height: 10),
                 ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color.fromARGB(125, 252, 99, 34),
-                  ),
+                  style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(125, 252, 99, 34)),
                   onPressed: () async {
-                    final resultado = await Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => TecnicosPage()),
-                    );
+                    final resultado = await Navigator.push(context, MaterialPageRoute(builder: (context) => TecnicosPage()));
                     if (resultado != null) {
                       setState(() {
-                        nomeTecnico = resultado; // Atualiza o estado com o nome do técnico selecionado
+                        nomeTecnico = resultado;
                       });
-                      saveSelectedTechnician(resultado);
+                      saveSelectedTechnician(resultado); // Salva o técnico selecionado.
                     }
                   },
-                  child: Text(nomeTecnico ?? 'Técnico', // Mostra o nome do técnico selecionado
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
+                  child: Text(nomeTecnico ?? 'Técnico', style: TextStyle(color: Colors.white, fontSize: 20)),
                 ),
               ],
             ),
@@ -139,26 +129,19 @@ class _MontarElencoPageState extends State<MontarElencoPage> {
     );
   }
 
-  // Widget para criar botões de jogadores
+  // Widget para criar botões de jogador, que ao clicar leva para a seleção de jogador.
   Widget botaoJogador(String posicao) {
     return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Color.fromARGB(125, 252, 99, 34) // Cor de fundo ajustada aqui
-      ),
+      style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(125, 252, 99, 34)),
       onPressed: () async {
-        var result = await Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => EscolhaTimePage()),
-        );
+        var result = await Navigator.push(context, MaterialPageRoute(builder: (context) => EscolhaTimePage()));
         if (result != null && result['player'] != null) {
           setState(() {
-            savePlayerName(posicao, result['player']); // Atualiza o nome do jogador selecionado e salva
+            savePlayerName(posicao, result['player']); // Salva o nome do jogador selecionado.
           });
         }
       },
-      child: Text(nomesJogadores[posicao] ?? posicao, // Mostra o nome do jogador ou a posição se não selecionado
-        style: TextStyle(color: Colors.white), // Define a cor do texto como branco
-      ),
+      child: Text(nomesJogadores[posicao] ?? posicao, style: TextStyle(color: Colors.white)),
     );
   }
 }

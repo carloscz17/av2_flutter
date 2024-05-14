@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application/pages/home_page.dart';
 
+// StatefulWidget para permitir a atualização da UI com interação do usuário
 class EntrarEmContatoPage extends StatefulWidget {
   const EntrarEmContatoPage({super.key});
 
@@ -9,14 +10,17 @@ class EntrarEmContatoPage extends StatefulWidget {
 }
 
 class _EntrarEmContatoPageState extends State<EntrarEmContatoPage> {
+  // Define controladores de texto para campos de formulário
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _nomeController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _mensagemController = TextEditingController();
 
+  // Função para enviar o formulário
   void _enviarFormulario() {
-    if (_formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate()) { // Verifica se o formulário está válido
       _formKey.currentState!.save();
+      // Mostra um diálogo de confirmação
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -27,8 +31,8 @@ class _EntrarEmContatoPageState extends State<EntrarEmContatoPage> {
               TextButton(
                 child: const Text("OK"),
                 onPressed: () {
-                  Navigator.of(context).pop();
-                  _nomeController.clear();
+                  Navigator.of(context).pop(); // Fecha o diálogo
+                  _nomeController.clear(); // Limpa os campos do formulário
                   _emailController.clear();
                   _mensagemController.clear();
                 },
@@ -46,19 +50,13 @@ class _EntrarEmContatoPageState extends State<EntrarEmContatoPage> {
       appBar: AppBar(
         backgroundColor: Color.fromARGB(125, 252, 99, 34),
         leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => HomePage()));
           },
         ),
-        title: const Text('ENTRAR EM CONTATO',
-        style: TextStyle(
-          color: Colors.white
-        ),),
+        title: const Text('ENTRAR EM CONTATO', style: TextStyle(color: Colors.white)),
       ),
       backgroundColor: Color.fromARGB(125, 96, 24, 24),
       body: SingleChildScrollView(
@@ -70,6 +68,7 @@ class _EntrarEmContatoPageState extends State<EntrarEmContatoPage> {
             children: <Widget>[
               const SizedBox(height: 20),
               Center(child: Image.asset('assets/images/logo_cartola.png', width: 300)),
+              // Campo de texto para nome
               TextFormField(
                 controller: _nomeController,
                 decoration: const InputDecoration(
@@ -84,6 +83,7 @@ class _EntrarEmContatoPageState extends State<EntrarEmContatoPage> {
                   return null;
                 },
               ),
+              // Campo de texto para email
               TextFormField(
                 controller: _emailController,
                 decoration: const InputDecoration(
@@ -98,6 +98,7 @@ class _EntrarEmContatoPageState extends State<EntrarEmContatoPage> {
                   return null;
                 },
               ),
+              // Campo de texto para mensagem
               TextFormField(
                 controller: _mensagemController,
                 decoration: const InputDecoration(
@@ -113,6 +114,7 @@ class _EntrarEmContatoPageState extends State<EntrarEmContatoPage> {
                 },
               ),
               const SizedBox(height: 20),
+              // Botão para enviar formulário
               Center(
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
@@ -133,6 +135,7 @@ class _EntrarEmContatoPageState extends State<EntrarEmContatoPage> {
 
   @override
   void dispose() {
+    // Limpa os controladores quando a página é descartada
     _nomeController.dispose();
     _emailController.dispose();
     _mensagemController.dispose();

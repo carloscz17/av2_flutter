@@ -25,7 +25,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
         title: Text('LOGIN'),
         ),
-      backgroundColor: Color.fromARGB(125, 96, 24, 24),
+      backgroundColor: const Color.fromARGB(125, 96, 24, 24),
       body: Stack(children: [
         Container(
           height: MediaQuery.of(context).size.height,
@@ -77,11 +77,11 @@ class _LoginPageState extends State<LoginPage> {
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color.fromARGB(125, 252, 99, 34),
+              backgroundColor: const Color.fromARGB(125, 252, 99, 34),
             ),
             onPressed: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => HomePage()));
+                  MaterialPageRoute(builder: (context) => const HomePage()));
             },
             child: const Text('ENTRAR',
                 style: TextStyle(

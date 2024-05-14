@@ -43,7 +43,7 @@ class _ScreenInicialState extends State<ScreenInicial> {
                                     MaterialPageRoute(
                                         builder: (context) => LoginPage()));
                               },
-                              child: Text('FAZER LOGIN',
+                              child: const Text('FAZER LOGIN',
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20)),
                             ),
@@ -65,7 +65,7 @@ class _ScreenInicialState extends State<ScreenInicial> {
                                         builder: (context) =>
                                             CriarContaPage()));
                               },
-                              child: Text('CRIAR CONTA',
+                              child: const Text('CRIAR CONTA',
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 20)),
                             ),

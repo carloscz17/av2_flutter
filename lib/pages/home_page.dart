@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
                 context, MaterialPageRoute(builder: (context) => LoginPage()));
           },
         ),
-        title: Text('HOME'),
+        title: const Text('HOME'),
       ),
       backgroundColor: Color.fromARGB(125, 96, 24, 24),
       body: Stack(
@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
                               MaterialPageRoute(
                                   builder: (context) => PontuadoresPage()));
                         },
-                        child: Text('PONTUAÇÃO',
+                        child: const Text('PONTUAÇÃO',
                             style:
                                 TextStyle(color: Colors.white, fontSize: 20)),
                       ),
@@ -79,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                               MaterialPageRoute(
                                   builder: (context) => MontarElencoPage()));
                         },
-                        child: Text('MONTAR ELENCO',
+                        child: const Text('MONTAR ELENCO',
                             style:
                                 TextStyle(color: Colors.white, fontSize: 20)),
                       ),
